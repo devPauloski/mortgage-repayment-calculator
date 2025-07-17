@@ -36,5 +36,11 @@ body {
   font-weight: 500;
   font-size: 1rem;
   line-height: 1.5;
+  color: var(--color-slate-500);  
   background-color: var(--color-slate-100);
+  min-block-size: 100vh;
+  @media(min-width: 48em) {
+    place-content: center;
+    padding-inline: 1rem;
+  }
 }
