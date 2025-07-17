@@ -1,6 +1,6 @@
 export default function InputRate() {
   return (
-    <div>
+    <div className="mb-5.5">
       <label htmlFor="interest-rate">Interest Rate</label>
       <div>
         <input

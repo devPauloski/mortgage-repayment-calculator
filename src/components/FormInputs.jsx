@@ -7,7 +7,7 @@ import SubmitButton from "./SubmitButton.jsx";
 
 export default function FormInputs() {
   return (
-    <section className="px-5.5 py-8">
+    <section className="px-[5%] py-8">
       <InputHeader />
       <InputAmount />
       <div className="flex flex-col gap-5.5">

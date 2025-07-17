@@ -1,6 +1,6 @@
 export default function InputAmount() {
   return (
-    <div>
+    <div className="mb-5.5">
       <label className="block mb-2" htmlFor="mortgage-amount">
         Mortgage Amount
       </label>
