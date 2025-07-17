@@ -10,7 +10,7 @@ export default function FormInputs() {
     <section className="px-[5%] py-8">
       <InputHeader />
       <InputAmount />
-      <div className="flex flex-col gap-5.5">
+      <div className="flex flex-col gap-5.5 md:flex-row md:flex-1">
         <InputTerms />
         <InputRate />
       </div>

@@ -41,6 +41,6 @@ body {
   min-block-size: 100vh;
   @media(min-width: 48em) {
     place-content: center;
-    padding-inline: 1rem;
+    padding: 1rem;
   }
 }
