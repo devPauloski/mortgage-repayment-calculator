@@ -9,7 +9,7 @@ export default function InputRate() {
           id="interest-rate"
           name="rate"
         />
-        <span className="relative block before:bg-slate-100 before:absolute before:w-13 before:h-12 before:content-['%'] before:right-[1px] before:bottom-[1px] before:grid before:place-items-center before:rounded-r-[.1875rem] before:font-bold"></span>
+        <span className="relative block before:bg-slate-100 before:absolute before:w-13 before:h-12 before:content-['%'] before:right-[1px] before:bottom-[1px] before:grid before:place-items-center before:rounded-r-[.1875rem] before:font-bold before:text-slate-700"></span>
       </div>
     </div>
   );

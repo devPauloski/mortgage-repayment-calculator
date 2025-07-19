@@ -11,7 +11,7 @@ export default function InputTerms() {
           id="mortgage-term"
           name="term"
         />
-        <span className="relative block before:bg-slate-100 before:absolute before:w-19.5 before:h-12 before:content-['years'] before:right-[1px] before:bottom-[1px] before:grid before:place-items-center before:rounded-r-[.1875rem] before:font-bold"></span>
+        <span className="relative block before:bg-slate-100 before:absolute before:w-19.5 before:h-12 before:content-['years'] before:right-[1px] before:bottom-[1px] before:grid before:place-items-center before:rounded-r-[.1875rem] before:font-bold before:text-slate-700"></span>
       </div>
     </div>
   );
