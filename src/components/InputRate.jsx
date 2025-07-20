@@ -4,12 +4,12 @@ export default function InputRate() {
       <label className="block mb-2" htmlFor="interest-rate">Interest Rate</label>
       <div>
         <input
-          className="w-full h-12.5 border-1 decoration-solid decoration-slate-500 rounded-sm pl-2"
+          className="peer w-full h-12.5 border-0 rounded-sm pl-2 outline outline-slate-500 focus-visible:outline-2 focus-visible:outline-lime text-slate-900 font-semibold cursor-pointer"
           type="text"
           id="interest-rate"
           name="rate"
         />
-        <span className="relative block before:bg-slate-100 before:absolute before:w-13 before:h-12 before:content-['%'] before:right-[1px] before:bottom-[1px] before:grid before:place-items-center before:rounded-r-[.1875rem] before:font-bold before:text-slate-700"></span>
+        <span className="relative block bg-slate-100 before:bg-inherit before:absolute before:w-13 before:h-12.5 before:content-['%'] before:right-0 before:bottom-0 before:grid before:place-items-center before:rounded-r-sm before:font-bold before:text-slate-700 peer-focus-visible:[&::before]:bg-lime peer-focus-visible:[&::before]:text-slate-900"></span>
       </div>
     </div>
   );
