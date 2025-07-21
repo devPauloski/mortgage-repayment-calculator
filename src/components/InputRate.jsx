@@ -6,12 +6,13 @@ export default function InputRate() {
       </label>
       <div>
         <input
-          className="peer h-12.5 w-full cursor-pointer rounded-sm border-0 pl-2 font-semibold text-slate-900 outline outline-slate-500 focus-visible:outline-2 focus-visible:outline-lime"
+          className="peer h-12.5 w-full cursor-pointer rounded-sm border-0 pl-2 font-semibold text-slate-900 outline outline-slate-500 hover:outline-1 hover:outline-slate-900 focus-visible:outline-1 focus-visible:outline-lime"
           type="text"
           id="interest-rate"
           name="rate"
         />
         <span className="relative block bg-slate-100 before:absolute before:right-0 before:bottom-0 before:grid before:h-12.5 before:w-13 before:place-items-center before:rounded-r-sm before:bg-inherit before:font-bold before:text-slate-700 before:content-['%'] peer-focus-visible:[&::before]:bg-lime peer-focus-visible:[&::before]:text-slate-900"></span>
+        <span className="hidden mt-1">This field is require</span>
       </div>
     </div>
   );
