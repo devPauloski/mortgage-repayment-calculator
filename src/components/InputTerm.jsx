@@ -1,4 +1,4 @@
-export default function InputTerms() {
+export default function InputTerm({ term, setTerm}) {
   return (
     <div>
       <label className="mb-2 block" htmlFor="mortgage-term">
@@ -6,6 +6,8 @@ export default function InputTerms() {
       </label>
       <div>
         <input
+          value={term}
+          onChange={(event) => setTerm(event.target.value)}
           className="peer h-12.5 w-full cursor-pointer rounded-sm border-0 pl-2 font-semibold text-slate-900 outline outline-slate-500 hover:outline-1 hover:outline-slate-900 focus-visible:outline-1 focus-visible:outline-lime"
           type="text"
           id="mortgage-term"

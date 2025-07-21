@@ -1,4 +1,4 @@
-export default function InputAmount() {
+export default function InputAmount({ amount, setAmount }) {
   return (
     <div className="mb-5">
       <label className="mb-2 block" htmlFor="mortgage-amount">
@@ -10,6 +10,8 @@ export default function InputAmount() {
           type="text"
           id="mortgage-amount"
           name="amount"
+          value={amount}
+          onChange={(event) => setAmount(event.target.value)}
         />
         <span className="relative block bg-slate-100 before:absolute before:bottom-0 before:left-0 before:grid before:h-12.5 before:w-11 before:place-items-center before:rounded-l-sm before:bg-inherit before:font-bold before:text-slate-700 before:content-['\00A3'] peer-focus-visible:[&::before]:bg-lime peer-focus-visible:[&::before]:text-slate-900"></span>
         <span className="mt-1 hidden">This field is require</span>
