@@ -4,14 +4,14 @@ export default function MortgageOptions() {
       <legend className="mb-2.5">Mortgage Type</legend>
       <div>
         <label
-          className="border-1 flex items-center gap-2 h-14 cursor-pointer p-4 mb-2.5 rounded-sm"
+          className="mb-2.5 flex h-14 cursor-pointer items-center gap-2 rounded-sm border-1 p-4"
           htmlFor="repayment"
         >
           <input type="radio" id="repayment" name="mortgageType" />
           <span>Repayment</span>
         </label>
         <label
-          className="border-1 flex items-center gap-2 h-14 cursor-pointer p-4 rounded-sm"
+          className="flex h-14 cursor-pointer items-center gap-2 rounded-sm border-1 p-4"
           htmlFor="interest-only"
         >
           <input type="radio" id="interest-only" name="mortgageType" />

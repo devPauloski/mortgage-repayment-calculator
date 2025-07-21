@@ -1,11 +1,11 @@
 export default function InputHeader() {
   return (
-    <header className="flex flex-col items-start gap-3 mb-7 md:flex-row md:items-center md:justify-between">
-      <h1 className="text-2xl lg:text-[1.625rem] text-slate-900 font-bold leading-tight">
+    <header className="mb-7 flex flex-col items-start gap-3 md:flex-row md:items-center md:justify-between">
+      <h1 className="text-2xl leading-tight font-bold text-slate-900 lg:text-[1.625rem]">
         Mortgage Calculator
       </h1>
       <button
-        className="underline decoration-1 decoration-solid cursor-pointer"
+        className="cursor-pointer underline decoration-solid decoration-1"
         type="reset"
       >
         Clear All
