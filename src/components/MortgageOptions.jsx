@@ -1,4 +1,4 @@
-import MortgageOption from "./mortgageOption";
+import MortgageOption from "./MortgageOption.jsx";
 
 export default function MortgageOptions({ mortgageType, setMortgageType }) {
   return (
