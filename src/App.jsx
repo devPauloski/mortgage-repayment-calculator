@@ -16,19 +16,23 @@ export default function App() {
   const [mortgageType, setMortgageType] = useState("");
 
   function handleAmount(event) {
-    let inputValue = event.target.value;
-    inputValue = inputValue.replace(/[^0-9.]/g, "");
+    let inputValue = event.target.value.replace(/[^0-9.]/g, "");
     const splitValue = inputValue.split(".");
-
     if (splitValue.length > 2) {
       inputValue = splitValue[0] + "." + splitValue[1];
     }
-
     if (splitValue.length === 2) {
       splitValue[1] = splitValue[1].slice(0, 2);
       inputValue = splitValue[0] + "." + splitValue[1];
     }
-
+    let [integerPart, decimalPart] = inputValue.split(".");
+    if (integerPart.length > 8) {
+      integerPart = integerPart.slice(0, 8);
+      inputValue =
+        decimalPart !== undefined
+          ? `${integerPart}.${decimalPart}`
+          : integerPart;
+    }
     setAmount(() => formatAmount(inputValue));
   }
 
@@ -37,7 +41,9 @@ export default function App() {
     if (!isNaN(number)) {
       const [integerPart, decimalPart] = input.split(".");
       const formatted = new Intl.NumberFormat().format(parseInt(integerPart));
-      return decimalPart !== undefined ? `${formatted}.${decimalPart}` : formatted;
+      return decimalPart !== undefined
+        ? `${formatted}.${decimalPart}`
+        : formatted;
     } else {
       return "";
     }
