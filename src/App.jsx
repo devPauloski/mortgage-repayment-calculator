@@ -171,8 +171,8 @@ export default function App() {
       <FormInputs>
         <Header handleReset={handleReset} />
         <InputAmount amount={amount} handleAmount={handleAmount} errors={errors} />
-        <div className="flex flex-col gap-5 md:flex-1 md:flex-row">
-          <InputTerm term={term} handleTerm={handleTerm} />
+        <div className="flex flex-col gap-5 md:flex-1 md:flex-row mb-4">
+          <InputTerm term={term} handleTerm={handleTerm} errors={errors} />
           <InputRate rate={rate} handleRate={handleRate} />
         </div>
         <MortgageOptions
