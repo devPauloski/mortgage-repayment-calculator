@@ -14,7 +14,10 @@ export default function App() {
   const [term, setTerm] = useState("");
   const [rate, setRate] = useState("");
   const [mortgageType, setMortgageType] = useState("");
+  const [errors, setErrors] = useState({});
+  const [results, setResults] = useState(null);
 
+  // Handle Amount
   function handleAmount(event) {
     let inputValue = event.target.value.replace(/[^0-9.]/g, "");
     const parts = inputValue.split(".");
@@ -40,6 +43,7 @@ export default function App() {
     setAmount(() => formatAmount(inputValue));
   }
 
+  // Handle Term
   function handleTerm(event) {
     let inputValue = event.target.value.replace(/[^0-9]/g, "");
 
@@ -51,12 +55,13 @@ export default function App() {
     if (isNaN(number)) {
       inputValue = "";
     } else {
-      inputValue = parseInt(inputValue)
+      inputValue = parseInt(inputValue);
     }
 
     setTerm(inputValue);
   }
 
+  // Handle Rate
   function handleRate(event) {
     let inputValue = event.target.value.replace(/[^0-9.]/g, "");
     const parts = inputValue.split(".");
@@ -94,6 +99,7 @@ export default function App() {
     setRate(inputValue);
   }
 
+  // Currency formatting
   function formatAmount(userInput) {
     const number = parseFloat(userInput);
     if (!isNaN(number)) {
@@ -107,22 +113,64 @@ export default function App() {
     }
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  // Validation
+  function validate() {
+    const errorLogs = {};
+
+    // Amount
+    const numericAmount = parseFloat(amount.replace(",", ""));
+    if (isNaN(numericAmount)) {
+      errorLogs.amount = "This field is required"
+    } else if (numericAmount < 5000 || numericAmount > 2500000000) {
+      errorLogs.amount = "Amount must be between £5,000 and £25,000,000";
+    }
+
+    // Term
+    const numericTerm = parseFloat(term);
+    if (isNaN(numericTerm)) {
+      errorLogs.term = "This field is required";
+    } else if (numericTerm < 1 || numericTerm > 30) {
+      errorLogs.term = "Year must be between 1 and 30";
+    }
+
+    // Rate 
+    const numericRate = parseFloat(rate);
+    if (isNaN(numericRate)) {
+      errorLogs.rate = "This field is required";
+    } else if (numericRate < 2 || numericRate > 20) {
+      errorLogs.rate = "Rate must be between 1% and 20%";
+    }
+
+    // Mortgage Type
+    if (!mortgageType) {
+      errorLogs.mortgageType = "This field is required"
+    }
+
+    setErrors(errorLogs);
+    return Object.keys(errorLogs).length === 0;
   }
 
+  // Handle Submit
+  function handleSubmit(event) {
+    event.preventDefault();
+    validate();
+  }
+
+  // Handle Reset
   function handleReset() {
     setAmount("");
     setTerm("");
     setRate("");
     setMortgageType("");
+    setErrors({});
+    setResults(null);
   }
 
   return (
     <FormWrapper handleSubmit={handleSubmit}>
       <FormInputs>
         <Header handleReset={handleReset} />
-        <InputAmount amount={amount} handleAmount={handleAmount} />
+        <InputAmount amount={amount} handleAmount={handleAmount} errors={errors} />
         <div className="flex flex-col gap-5 md:flex-1 md:flex-row">
           <InputTerm term={term} handleTerm={handleTerm} />
           <InputRate rate={rate} handleRate={handleRate} />
