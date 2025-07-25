@@ -118,11 +118,11 @@ export default function App() {
     const errorLogs = {};
 
     // Amount
-    const numericAmount = parseFloat(amount.replace(",", ""));
+    const numericAmount = parseFloat(amount.replaceAll(",", ""));
     if (isNaN(numericAmount)) {
-      errorLogs.amount = "This field is required"
-    } else if (numericAmount < 5000 || numericAmount > 2500000000) {
-      errorLogs.amount = "Amount must be between £5,000 and £25,000,000";
+      errorLogs.amount = "This field is required";
+    } else if (numericAmount < 5000 || numericAmount > 25_000_000) {
+      errorLogs.amount = "Must be between £5,000 and £25,000,000";
     }
 
     // Term
@@ -130,7 +130,7 @@ export default function App() {
     if (isNaN(numericTerm)) {
       errorLogs.term = "This field is required";
     } else if (numericTerm < 1 || numericTerm > 30) {
-      errorLogs.term = "Year must be between 1 and 30";
+      errorLogs.term = "Must be between 1 and 30";
     }
 
     // Rate 
@@ -138,7 +138,7 @@ export default function App() {
     if (isNaN(numericRate)) {
       errorLogs.rate = "This field is required";
     } else if (numericRate < 2 || numericRate > 20) {
-      errorLogs.rate = "Rate must be between 1% and 20%";
+      errorLogs.rate = "Must be between 2% and 20%";
     }
 
     // Mortgage Type
@@ -171,9 +171,9 @@ export default function App() {
       <FormInputs>
         <Header handleReset={handleReset} />
         <InputAmount amount={amount} handleAmount={handleAmount} errors={errors} />
-        <div className="flex flex-col gap-5 md:flex-1 md:flex-row mb-4">
+        <div className="flex flex-col gap-5 md:flex-row">
           <InputTerm term={term} handleTerm={handleTerm} errors={errors} />
-          <InputRate rate={rate} handleRate={handleRate} />
+          <InputRate rate={rate} handleRate={handleRate} errors={errors} />
         </div>
         <MortgageOptions
           mortgageType={mortgageType}
