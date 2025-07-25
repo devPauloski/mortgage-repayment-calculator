@@ -1,4 +1,4 @@
-export default function InputRate({ rate, setRate }) {
+export default function InputRate({ rate, handleRate }) {
   return (
     <div className="mb-5">
       <label className="mb-2 block" htmlFor="interest-rate">
@@ -9,7 +9,8 @@ export default function InputRate({ rate, setRate }) {
           type="text"
           inputMode="decimal"
           value={rate}
-          onChange={(event) => setRate(event.target.value)}
+          autoComplete="off"
+          onChange={(event) => handleRate(event)}
           id="interest-rate"
           name="rate"
           className="peer h-12.5 w-full cursor-pointer rounded-sm border-0 pl-2 font-semibold text-slate-900 outline outline-slate-500 hover:outline-1 hover:outline-slate-900 focus-visible:outline-1 focus-visible:outline-lime"

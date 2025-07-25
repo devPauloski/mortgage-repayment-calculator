@@ -50,6 +50,31 @@ export default function App() {
     setTerm(inputValue);
   }
 
+  function handleRate(event) {
+    let inputValue = event.target.value.replace(/[^0-9.]/g, "");
+    const parts = inputValue.split(".");
+
+    if (parts.length > 2) {
+      inputValue = parts[0] + "." + parts[1];
+    }
+
+    if (parts[0].length > 2) {
+      parts[0] = parts[0].slice(0, 2);
+      if (parts[1] === undefined) {
+        inputValue = parts[0];
+      } else {
+        inputValue = parts[0] + "." + parts[1];
+      }
+    }
+
+    if (parts.length === 2) {
+      parts[1] = parts[1].slice(0, 1);
+      inputValue = parts[0] + "." + parts[1];
+    }
+
+    setRate(inputValue);
+  }
+
   function formatAmount(userInput) {
     const number = parseFloat(userInput);
     if (!isNaN(number)) {
@@ -81,7 +106,7 @@ export default function App() {
         <InputAmount amount={amount} handleAmount={handleAmount} />
         <div className="flex flex-col gap-5 md:flex-1 md:flex-row">
           <InputTerm term={term} handleTerm={handleTerm} />
-          <InputRate rate={rate} setRate={setRate} />
+          <InputRate rate={rate} handleRate={handleRate} />
         </div>
         <MortgageOptions
           mortgageType={mortgageType}
