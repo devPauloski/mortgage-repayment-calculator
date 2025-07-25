@@ -17,29 +17,33 @@ export default function App() {
 
   function handleAmount(event) {
     let inputValue = event.target.value.replace(/[^0-9.]/g, "");
-    const splitValue = inputValue.split(".");
-    if (splitValue.length > 2) {
-      inputValue = splitValue[0] + "." + splitValue[1];
+    const parts = inputValue.split(".");
+
+    if (parts.length > 2) {
+      inputValue = parts[0] + "." + parts[1];
     }
-    if (splitValue.length === 2) {
-      splitValue[1] = splitValue[1].slice(0, 2);
-      inputValue = splitValue[0] + "." + splitValue[1];
+
+    if (parts[0].length > 8) {
+      parts[0] = parts[0].slice(0, 8);
+      if (parts[1] === undefined) {
+        inputValue = parts[0];
+      } else {
+        inputValue = parts[0] + "." + parts[1];
+      }
     }
-    let [integerPart, decimalPart] = inputValue.split(".");
-    if (integerPart.length > 8) {
-      integerPart = integerPart.slice(0, 8);
-      inputValue =
-        decimalPart !== undefined
-          ? `${integerPart}.${decimalPart}`
-          : integerPart;
+
+    if (parts.length === 2) {
+      parts[1] = parts[1].slice(0, 2);
+      inputValue = parts[0] + "." + parts[1];
     }
+
     setAmount(() => formatAmount(inputValue));
   }
 
-  function formatAmount(input) {
-    const number = parseFloat(input);
+  function formatAmount(userInput) {
+    const number = parseFloat(userInput);
     if (!isNaN(number)) {
-      const [integerPart, decimalPart] = input.split(".");
+      const [integerPart, decimalPart] = userInput.split(".");
       const formatted = new Intl.NumberFormat().format(parseInt(integerPart));
       return decimalPart !== undefined
         ? `${formatted}.${decimalPart}`

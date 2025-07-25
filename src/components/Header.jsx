@@ -1,6 +1,6 @@
 export default function Header({ handleReset }) {
   return (
-    <header className="mb-4 flex flex-col items-start gap-3 md:flex-row md:items-center md:justify-between">
+    <div className="mb-4 flex flex-col items-start gap-3 md:flex-row md:items-center md:justify-between">
       <h1 className="text-2xl leading-tight font-bold text-slate-900 lg:text-[1.625rem]">
         Mortgage Calculator
       </h1>
@@ -11,6 +11,6 @@ export default function Header({ handleReset }) {
       >
         Clear All
       </button>
-    </header>
+    </div>
   );
 }
