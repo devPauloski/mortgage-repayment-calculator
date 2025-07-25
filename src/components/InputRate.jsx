@@ -10,6 +10,7 @@ export default function InputRate({ rate, handleRate }) {
           inputMode="decimal"
           value={rate}
           autoComplete="off"
+          placeholder="2 - 20"
           onChange={(event) => handleRate(event)}
           id="interest-rate"
           name="rate"

@@ -72,6 +72,18 @@ export default function App() {
       inputValue = parts[0] + "." + parts[1];
     }
 
+    const number = parseFloat(inputValue);
+    if (!isNaN(number)) {
+      parts[0] = parseInt(parts[0]);
+      if (parts[1] === undefined) {
+        inputValue = parts[0];
+      } else {
+        inputValue = parts[0] + "." + parts[1];
+      }
+    } else {
+      inputValue = "";
+    }
+
     setRate(inputValue);
   }
 
