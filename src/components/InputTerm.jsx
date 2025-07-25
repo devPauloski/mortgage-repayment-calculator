@@ -1,4 +1,4 @@
-export default function InputTerm({ term, setTerm }) {
+export default function InputTerm({ term, handleTerm }) {
   return (
     <div>
       <label className="mb-2 block" htmlFor="mortgage-term">
@@ -7,10 +7,12 @@ export default function InputTerm({ term, setTerm }) {
       <div>
         <input
           type="text"
-          inputMode="numeric"
+          inputMode="decimal"
           value={term}
-          onChange={(event) => setTerm(event.target.value)}
+          onChange={(event) => handleTerm(event)}
+          autoComplete="off"
           id="mortgage-term"
+          placeholder="1 - 30"
           name="term"
           className="peer h-12.5 w-full cursor-pointer rounded-sm border-0 pl-2 font-semibold text-slate-900 outline outline-slate-500 hover:outline-1 hover:outline-slate-900 focus-visible:outline-1 focus-visible:outline-lime"
         />

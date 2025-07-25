@@ -40,6 +40,16 @@ export default function App() {
     setAmount(() => formatAmount(inputValue));
   }
 
+  function handleTerm(event) {
+    let inputValue = event.target.value.replace(/[^0-9]/g, "");
+
+    if (inputValue.length > 2) {
+      inputValue = inputValue.slice(0, 2);
+    }
+
+    setTerm(inputValue);
+  }
+
   function formatAmount(userInput) {
     const number = parseFloat(userInput);
     if (!isNaN(number)) {
@@ -70,7 +80,7 @@ export default function App() {
         <Header handleReset={handleReset} />
         <InputAmount amount={amount} handleAmount={handleAmount} />
         <div className="flex flex-col gap-5 md:flex-1 md:flex-row">
-          <InputTerm terms={term} setTerm={setTerm} />
+          <InputTerm term={term} handleTerm={handleTerm} />
           <InputRate rate={rate} setRate={setRate} />
         </div>
         <MortgageOptions
