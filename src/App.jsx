@@ -47,6 +47,13 @@ export default function App() {
       inputValue = inputValue.slice(0, 2);
     }
 
+    const number = parseFloat(inputValue);
+    if (isNaN(number)) {
+      inputValue = "";
+    } else {
+      inputValue = parseInt(inputValue)
+    }
+
     setTerm(inputValue);
   }
 
