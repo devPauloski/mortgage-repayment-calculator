@@ -6,7 +6,7 @@ export default function InputAmount({ amount, handleAmount, errors }) {
       </label>
       <input
         style={{
-          outline: errors.amount && "1px solid hsl(4, 69%, 50%)",
+          outline: (errors.amount) && "1px solid hsl(4, 69%, 50%)",
         }}
         type="text"
         inputMode="decimal"

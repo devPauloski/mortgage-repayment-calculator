@@ -6,7 +6,7 @@ export default function InputTerm({ term, handleTerm, errors }) {
       </label>
       <input
         style={{
-          outline: errors.term && "1px solid hsl(4, 69%, 50%)",
+          outline: (errors.term) && "1px solid hsl(4, 69%, 50%)",
         }}
         type="text"
         inputMode="decimal"
