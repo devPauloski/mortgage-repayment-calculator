@@ -22,7 +22,10 @@ export default function MortgageOptions({
         onChange={(event) => setMortgageType(event.target.value)}
       />
       {errors.mortgageType && (
-        <span className="mt-1 inline-block text-[.8125rem] text-red">
+        <span
+          aria-live="polite"
+          className="mt-1 inline-block text-[.8125rem] text-red"
+        >
           {errors.mortgageType}
         </span>
       )}

@@ -6,7 +6,7 @@ export default function InputAmount({ amount, handleAmount, errors }) {
       </label>
       <input
         style={{
-          outline: (errors.amount) && "1px solid hsl(4, 69%, 50%)",
+          outline: errors.amount && "1px solid hsl(4, 69%, 50%)",
         }}
         type="text"
         inputMode="decimal"
@@ -20,13 +20,16 @@ export default function InputAmount({ amount, handleAmount, errors }) {
       />
       <span
         style={{
-          backgroundColor: (errors.amount) && "hsl(4, 69%, 50%)",
+          backgroundColor: errors.amount && "hsl(4, 69%, 50%)",
           color: errors.amount && "hsl(0, 0%, 100%)",
         }}
         className="relative block bg-slate-100 text-slate-700 before:absolute before:bottom-0 before:left-0 before:grid before:h-12.5 before:w-11 before:place-items-center before:rounded-l-sm before:bg-inherit before:font-bold before:text-inherit before:content-['\00A3'] peer-focus-visible:[&::before]:bg-lime peer-focus-visible:[&::before]:text-slate-900"
       ></span>
       {errors.amount && (
-        <span className="mt-1 inline-block text-[.8125rem] text-red">
+        <span
+          aria-live="polite"
+          className="mt-1 inline-block text-[.8125rem] text-red"
+        >
           {errors.amount}
         </span>
       )}

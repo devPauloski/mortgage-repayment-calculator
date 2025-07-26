@@ -26,7 +26,10 @@ export default function InputRate({ rate, handleRate, errors }) {
         className="relative block bg-slate-100 text-slate-700 before:absolute before:right-0 before:bottom-0 before:grid before:h-12.5 before:w-13 before:place-items-center before:rounded-r-sm before:bg-inherit before:font-bold before:text-inherit before:content-['%'] peer-focus-visible:[&::before]:bg-lime peer-focus-visible:[&::before]:text-slate-900"
       ></span>
       {errors.rate && (
-        <span className="mt-1 inline-block text-[.8125rem] text-red">
+        <span
+          aria-live="polite"
+          className="mt-1 inline-block text-[.8125rem] text-red"
+        >
           {errors.rate}
         </span>
       )}
