@@ -154,12 +154,13 @@ export default function App() {
   function calculateResults() {
     const p = Number(amount.replace(/,/g, ""));
     const n = Number(term) * 12;
-    const r = Number(rate) / 100 / 12;
+    const r = (Number(rate) / 100) / 12;
     const monthly = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const total = monthly * n;
+
     setResults({
-      monthly: monthly.toFixed(2),
-      total: total.toFixed(2),
+      monthly: formatAmount(monthly.toFixed(2)),
+      total: formatAmount(total.toFixed(2)),
     });
   }
 
@@ -170,7 +171,7 @@ export default function App() {
       calculateResults();
       setErrors({});
     } else {
-      return;
+      setResults(null);
     }
   }
 
