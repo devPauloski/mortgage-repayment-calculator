@@ -80,7 +80,7 @@ export default function App() {
     }
 
     if (parts.length === 2) {
-      parts[1] = parts[1].slice(0, 1);
+      parts[1] = parts[1].slice(0, 2);
       inputValue = parts[0] + "." + parts[1];
     }
 
@@ -153,7 +153,7 @@ export default function App() {
   function calculateResults() {
     const p = Number(amount.replace(/,/g, ""));
     const n = Number(term) * 12;
-    const r = Number(rate) / 100 / 12;
+    const r = (Number(rate) / 100) / 12;
     const monthly = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const total = monthly * n;
 
