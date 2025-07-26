@@ -43,6 +43,5 @@ body {
   min-block-size: 100vh;
   @media (min-width: 48em) {
     place-content: center;
-    padding: 1rem;
   }
 }
