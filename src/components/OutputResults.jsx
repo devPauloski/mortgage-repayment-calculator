@@ -1,6 +1,6 @@
-export default function OutputResults() {
+export default function OutputResults({results}) {
   return (
-    <div className="hidden">
+    <div>
       <h2>Your results</h2>
       <p>
         Your results are shown below based on the information you provided. To
@@ -9,11 +9,11 @@ export default function OutputResults() {
       </p>
       <p>
         <span>Your monthly repayments</span>
-        <output></output>
+        <output>{results.monthly}</output>
       </p>
       <p>
         <span>Total you'll repay over the term</span>
-        <output></output>
+        <output>{results.total}</output>
       </p>
     </div>
   );

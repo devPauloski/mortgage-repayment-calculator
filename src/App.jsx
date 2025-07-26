@@ -150,10 +150,28 @@ export default function App() {
     return Object.keys(errorLogs).length === 0;
   }
 
+  // Calculate result
+  function calculateResults() {
+    const p = Number(amount.replace(/,/g, ""));
+    const n = Number(term) * 12;
+    const r = Number(rate) / 100 / 12;
+    const monthly = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const total = monthly * n;
+    setResults({
+      monthly: monthly.toFixed(2),
+      total: total.toFixed(2),
+    });
+  }
+
   // Handle Submit
   function handleSubmit(event) {
     event.preventDefault();
-    validate();
+    if (validate()) {
+      calculateResults();
+      setErrors({});
+    } else {
+      return;
+    }
   }
 
   // Handle Reset
@@ -186,7 +204,7 @@ export default function App() {
         />
         <SubmitButton />
       </FormInputs>
-      <FormOutputs />
+      <FormOutputs results={results} />
     </FormWrapper>
   );
 }
