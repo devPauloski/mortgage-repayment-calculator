@@ -1,4 +1,41 @@
-export default function InputRate({ rate, handleRate, errors }) {
+export default function InputRate({ rate, setRate, errors }) {
+  function handleRate(event) {
+    let inputValue = event.target.value.replace(/[^0-9.]/g, "");
+    const parts = inputValue.split(".");
+
+    if (parts.length > 2) {
+      inputValue = parts[0] + "." + parts[1];
+    }
+
+    if (parts[0].length > 2) {
+      parts[0] = parts[0].slice(0, 2);
+      if (parts[1] === undefined) {
+        inputValue = parts[0];
+      } else {
+        inputValue = parts[0] + "." + parts[1];
+      }
+    }
+
+    if (parts.length === 2) {
+      parts[1] = parts[1].slice(0, 2);
+      inputValue = parts[0] + "." + parts[1];
+    }
+
+    const number = parseFloat(inputValue);
+    if (!isNaN(number)) {
+      parts[0] = parseInt(parts[0]);
+      if (parts[1] === undefined) {
+        inputValue = parts[0];
+      } else {
+        inputValue = parts[0] + "." + parts[1];
+      }
+    } else {
+      inputValue = "";
+    }
+
+    setRate(inputValue);
+  }
+  
   return (
     <div className="md:flex-1">
       <label className="mb-2 block" htmlFor="interest-rate">
@@ -6,7 +43,7 @@ export default function InputRate({ rate, handleRate, errors }) {
       </label>
       <input
         style={{
-          outline: (errors.rate) && "1px solid hsl(4, 69%, 50%)",
+          outline: errors.rate && "1px solid hsl(4, 69%, 50%)",
         }}
         type="text"
         inputMode="decimal"
@@ -20,7 +57,7 @@ export default function InputRate({ rate, handleRate, errors }) {
       />
       <span
         style={{
-          backgroundColor: (errors.rate) && "hsl(4, 69%, 50%)",
+          backgroundColor: errors.rate && "hsl(4, 69%, 50%)",
           color: errors.rate && "hsl(0, 0%, 100%)",
         }}
         className="relative block bg-slate-100 text-slate-700 before:absolute before:right-0 before:bottom-0 before:grid before:h-12.5 before:w-13 before:place-items-center before:rounded-r-sm before:bg-inherit before:font-bold before:text-inherit before:content-['%'] peer-focus-visible:[&::before]:bg-lime peer-focus-visible:[&::before]:text-slate-900"

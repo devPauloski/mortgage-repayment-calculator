@@ -17,102 +17,6 @@ export default function App() {
   const [errors, setErrors] = useState({});
   const [results, setResults] = useState(null);
 
-  // Handle Amount
-  function handleAmount(event) {
-    let inputValue = event.target.value.replace(/[^0-9.]/g, "");
-    const parts = inputValue.split(".");
-
-    if (parts.length > 2) {
-      inputValue = parts[0] + "." + parts[1];
-    }
-
-    if (parts[0].length > 8) {
-      parts[0] = parts[0].slice(0, 8);
-      if (parts[1] === undefined) {
-        inputValue = parts[0];
-      } else {
-        inputValue = parts[0] + "." + parts[1];
-      }
-    }
-
-    if (parts.length === 2) {
-      parts[1] = parts[1].slice(0, 2);
-      inputValue = parts[0] + "." + parts[1];
-    }
-
-    setAmount(() => formatAmount(inputValue));
-  }
-
-  // Handle Term
-  function handleTerm(event) {
-    let inputValue = event.target.value.replace(/[^0-9]/g, "");
-
-    if (inputValue.length > 2) {
-      inputValue = inputValue.slice(0, 2);
-    }
-
-    const number = parseFloat(inputValue);
-    if (isNaN(number)) {
-      inputValue = "";
-    } else {
-      inputValue = parseInt(inputValue);
-    }
-
-    setTerm(inputValue);
-  }
-
-  // Handle Rate
-  function handleRate(event) {
-    let inputValue = event.target.value.replace(/[^0-9.]/g, "");
-    const parts = inputValue.split(".");
-
-    if (parts.length > 2) {
-      inputValue = parts[0] + "." + parts[1];
-    }
-
-    if (parts[0].length > 2) {
-      parts[0] = parts[0].slice(0, 2);
-      if (parts[1] === undefined) {
-        inputValue = parts[0];
-      } else {
-        inputValue = parts[0] + "." + parts[1];
-      }
-    }
-
-    if (parts.length === 2) {
-      parts[1] = parts[1].slice(0, 2);
-      inputValue = parts[0] + "." + parts[1];
-    }
-
-    const number = parseFloat(inputValue);
-    if (!isNaN(number)) {
-      parts[0] = parseInt(parts[0]);
-      if (parts[1] === undefined) {
-        inputValue = parts[0];
-      } else {
-        inputValue = parts[0] + "." + parts[1];
-      }
-    } else {
-      inputValue = "";
-    }
-
-    setRate(inputValue);
-  }
-
-  // Currency formatting
-  function formatAmount(userInput) {
-    const number = parseFloat(userInput);
-    if (!isNaN(number)) {
-      const [integerPart, decimalPart] = userInput.split(".");
-      const formatted = new Intl.NumberFormat().format(parseInt(integerPart));
-      return decimalPart !== undefined
-        ? `${formatted}.${decimalPart}`
-        : formatted;
-    } else {
-      return "";
-    }
-  }
-
   // Validation
   function validate() {
     const errorLogs = {};
@@ -147,6 +51,20 @@ export default function App() {
     }
 
     return errorLogs;
+  }
+
+  // Currency formatting
+  function formatAmount(userInput) {
+    const number = parseFloat(userInput);
+    if (!isNaN(number)) {
+      const [integerPart, decimalPart] = userInput.split(".");
+      const formatted = new Intl.NumberFormat().format(parseInt(integerPart));
+      return decimalPart !== undefined
+        ? `${formatted}.${decimalPart}`
+        : formatted;
+    } else {
+      return "";
+    }
   }
 
   // Calculate result
@@ -193,12 +111,13 @@ export default function App() {
         <Header handleReset={handleReset} />
         <InputAmount
           amount={amount}
-          handleAmount={handleAmount}
+          setAmount={setAmount}
+          formatAmount={formatAmount}
           errors={errors}
         />
         <div className="flex flex-col gap-5 md:flex-row">
-          <InputTerm term={term} handleTerm={handleTerm} errors={errors} />
-          <InputRate rate={rate} handleRate={handleRate} errors={errors} />
+          <InputTerm term={term} setTerm={setTerm} errors={errors} />
+          <InputRate rate={rate} setRate={setRate} errors={errors} />
         </div>
         <MortgageOptions
           mortgageType={mortgageType}

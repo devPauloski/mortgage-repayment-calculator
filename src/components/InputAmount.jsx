@@ -1,4 +1,29 @@
-export default function InputAmount({ amount, handleAmount, errors }) {
+export default function InputAmount({ amount, setAmount, formatAmount, errors }) {
+  function handleAmount(event) {
+    let inputValue = event.target.value.replace(/[^0-9.]/g, "");
+    const parts = inputValue.split(".");
+
+    if (parts.length > 2) {
+      inputValue = parts[0] + "." + parts[1];
+    }
+
+    if (parts[0].length > 8) {
+      parts[0] = parts[0].slice(0, 8);
+      if (parts[1] === undefined) {
+        inputValue = parts[0];
+      } else {
+        inputValue = parts[0] + "." + parts[1];
+      }
+    }
+
+    if (parts.length === 2) {
+      parts[1] = parts[1].slice(0, 2);
+      inputValue = parts[0] + "." + parts[1];
+    }
+
+    setAmount(() => formatAmount(inputValue));
+  }
+
   return (
     <div>
       <label className="mb-2 block" htmlFor="mortgage-amount">

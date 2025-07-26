@@ -1,4 +1,21 @@
-export default function InputTerm({ term, handleTerm, errors }) {
+export default function InputTerm({ term, setTerm, errors }) {
+  function handleTerm(event) {
+    let inputValue = event.target.value.replace(/[^0-9]/g, "");
+
+    if (inputValue.length > 2) {
+      inputValue = inputValue.slice(0, 2);
+    }
+
+    const number = parseFloat(inputValue);
+    if (isNaN(number)) {
+      inputValue = "";
+    } else {
+      inputValue = parseInt(inputValue);
+    }
+
+    setTerm(inputValue);
+  }
+
   return (
     <div className="md:flex-1">
       <label className="mb-2 block" htmlFor="mortgage-term">
@@ -6,7 +23,7 @@ export default function InputTerm({ term, handleTerm, errors }) {
       </label>
       <input
         style={{
-          outline: (errors.term) && "1px solid hsl(4, 69%, 50%)",
+          outline: errors.term && "1px solid hsl(4, 69%, 50%)",
         }}
         type="text"
         inputMode="decimal"
