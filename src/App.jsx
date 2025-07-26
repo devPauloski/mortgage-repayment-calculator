@@ -147,8 +147,6 @@ export default function App() {
     }
 
     return errorLogs;
-    // setErrors(errorLogs);
-    // return Object.keys(errorLogs).length === 0;
   }
 
   // Calculate result
@@ -169,6 +167,7 @@ export default function App() {
   function handleSubmit(event) {
     event.preventDefault();
     const errorLogs = validate();
+
     if (Object.keys(errorLogs).length) {
       setErrors(errorLogs);
       setResults(null);
