@@ -118,7 +118,7 @@ export default function App() {
     const errorLogs = {};
 
     // Amount
-    const numericAmount = parseFloat(amount.replaceAll(",", ""));
+    const numericAmount = parseFloat(amount.replace(/,/g, ""));
     if (isNaN(numericAmount)) {
       errorLogs.amount = "This field is required";
     } else if (numericAmount < 5000 || numericAmount > 25_000_000) {
@@ -133,7 +133,7 @@ export default function App() {
       errorLogs.term = "Must be between 1 and 30";
     }
 
-    // Rate 
+    // Rate
     const numericRate = parseFloat(rate);
     if (isNaN(numericRate)) {
       errorLogs.rate = "This field is required";
@@ -143,7 +143,7 @@ export default function App() {
 
     // Mortgage Type
     if (!mortgageType) {
-      errorLogs.mortgageType = "This field is required"
+      errorLogs.mortgageType = "This field is required";
     }
 
     setErrors(errorLogs);
@@ -170,7 +170,11 @@ export default function App() {
     <FormWrapper handleSubmit={handleSubmit}>
       <FormInputs>
         <Header handleReset={handleReset} />
-        <InputAmount amount={amount} handleAmount={handleAmount} errors={errors} />
+        <InputAmount
+          amount={amount}
+          handleAmount={handleAmount}
+          errors={errors}
+        />
         <div className="flex flex-col gap-5 md:flex-row">
           <InputTerm term={term} handleTerm={handleTerm} errors={errors} />
           <InputRate rate={rate} handleRate={handleRate} errors={errors} />
@@ -178,6 +182,7 @@ export default function App() {
         <MortgageOptions
           mortgageType={mortgageType}
           setMortgageType={setMortgageType}
+          errors={errors}
         />
         <SubmitButton />
       </FormInputs>

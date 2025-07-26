@@ -1,6 +1,10 @@
 import MortgageOption from "./MortgageOption.jsx";
 
-export default function MortgageOptions({ mortgageType, setMortgageType }) {
+export default function MortgageOptions({
+  mortgageType,
+  setMortgageType,
+  errors,
+}) {
   return (
     <fieldset className="mb-5.5">
       <legend className="mb-2.5">Mortgage Type</legend>
@@ -17,7 +21,11 @@ export default function MortgageOptions({ mortgageType, setMortgageType }) {
         checked={mortgageType === "Interest Only"}
         onChange={(event) => setMortgageType(event.target.value)}
       />
-      <span className="mt-1 hidden">This field is require</span>
+      {errors.mortgageType && (
+        <span className="mt-1 inline-block text-[.8125rem] text-red">
+          {errors.mortgageType}
+        </span>
+      )}
     </fieldset>
   );
 }
