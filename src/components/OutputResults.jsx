@@ -1,7 +1,7 @@
 export default function OutputResults({ results }) {
   return (
     <div>
-      <h2 className="mb-5 text-2xl leading-tight font-bold text-white">
+      <h2 className="mb-5 text-2xl leading-tight font-bold text-white md:text-[1.625rem]">
         Your results
       </h2>
       <p className="mb-5 md:mb-8">
