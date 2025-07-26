@@ -146,15 +146,16 @@ export default function App() {
       errorLogs.mortgageType = "This field is required";
     }
 
-    setErrors(errorLogs);
-    return Object.keys(errorLogs).length === 0;
+    return errorLogs;
+    // setErrors(errorLogs);
+    // return Object.keys(errorLogs).length === 0;
   }
 
   // Calculate result
   function calculateResults() {
     const p = Number(amount.replace(/,/g, ""));
     const n = Number(term) * 12;
-    const r = (Number(rate) / 100) / 12;
+    const r = Number(rate) / 100 / 12;
     const monthly = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
     const total = monthly * n;
 
@@ -167,11 +168,13 @@ export default function App() {
   // Handle Submit
   function handleSubmit(event) {
     event.preventDefault();
-    if (validate()) {
+    const errorLogs = validate();
+    if (Object.keys(errorLogs).length) {
+      setErrors(errorLogs);
+      setResults(null);
+    } else {
       calculateResults();
       setErrors({});
-    } else {
-      setResults(null);
     }
   }
 
